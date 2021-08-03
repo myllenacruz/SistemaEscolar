@@ -1,10 +1,10 @@
 const express = require('express')
-const app = express()
+const routes = require('./routes/index')
 
-app.use(express.json())
+const app = express()
 app.use(express.urlencoded({ extended: true }))
 
-app.get('/test', (req, res) => res.status(200).send({ message: 'Ok :}' }))
+routes(app)
 
 app.listen(3000, () => {
   console.log('Ok!')
