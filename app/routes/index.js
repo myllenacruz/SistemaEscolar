@@ -1,8 +1,7 @@
 const express = require('express')
+const people = require('./peopleRoute')
 
 module.exports = (app) => {
   app.use(express.json())
-  app.get('/', (req, res) => {
-    res.send('Ok...')
-  })
+  app.use(people)
 }
