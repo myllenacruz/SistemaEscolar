@@ -8,8 +8,12 @@ module.exports = (sequelize, DataTypes) => {
       Classes.hasMany(models.Enrollments, {
         foreignKey: 'class_id'
       })
-      Classes.belongsTo(models.People)
-      Classes.belongsTo(models.Levels)
+      Classes.belongsTo(models.People, {
+        foreignKey: 'teacher_id'
+      })
+      Classes.belongsTo(models.Levels, {
+        foreignKey: 'level_id'
+      })
     }
   };
   Classes.init({

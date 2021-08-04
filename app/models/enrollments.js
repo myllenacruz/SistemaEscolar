@@ -5,8 +5,12 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Enrollments extends Model {
     static associate(models) {
-      Enrollments.belongsTo(models.People)
-      Enrollments.belongsTo(models.Classes)
+      Enrollments.belongsTo(models.People, {
+        foreignKey: 'student_id'
+      })
+      Enrollments.belongsTo(models.Classes, {
+        foreignKey: 'class_id'
+      })
     }
   };
   Enrollments.init({
