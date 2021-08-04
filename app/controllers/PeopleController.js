@@ -78,6 +78,32 @@ class PeopleController {
       return res.status(500).json(error.message)
     }
   }
+
+  static async updateEnrollment(req, res) {
+    const { studentId, enrollmentId } = req.params
+    const newInfo = req.body
+    try {
+      await database.Enrollments.update(newInfo, {
+        where: { id: Number(enrollmentId), student_id: Number(studentId) },
+      })
+      const updatedEnrollment = await database.Enrollments.findOne({
+        where: { id: Number(enrollmentId) },
+      })
+      return res.status(200).json(updatedEnrollment)
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
+
+  static async deleteEnrollment(req, res) {
+    const { studentId, enrollmentId } = req.params
+    try {
+      await database.Enrollments.destroy({ where: { id: Number(enrollmentId) } })
+      return res.status(200).json({ message: 'Ok!' })
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
 }
 
 module.exports = PeopleController
