@@ -67,6 +67,17 @@ class PeopleController {
       return res.status(500).json(error.message)
     }
   }
+
+  static async createEnrollment(req, res) {
+    const { studentId } = req.params
+    const newEnrollment = { ...req.body, student_id: Number(studentId) }
+    try {
+      const newEnrollmentCreated = await database.Enrollments.create(newEnrollment)
+      return res.status(200).json(newEnrollmentCreated)
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
 }
 
 module.exports = PeopleController
