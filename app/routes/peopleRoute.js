@@ -7,5 +7,6 @@ router.get('/people/:id', PeopleController.catchPerson)
 router.post('/people', PeopleController.createPerson)
 router.put('/people/:id', PeopleController.updatePerson)
 router.delete('/people/:id', PeopleController.deletePerson)
+router.get('/people/:studentId/enrollment/:enrollmentId', PeopleController.catchEnrollment)
 
 module.exports = router

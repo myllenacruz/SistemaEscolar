@@ -55,6 +55,18 @@ class PeopleController {
       return res.status(500).json(error.message)
     }
   }
+
+  static async catchEnrollment(req, res) {
+    const { studentId, enrollmentId } = req.params
+    try {
+      const oneEnrollment = await database.Enrollments.findOne({
+        where: { id: Number(enrollmentId), student_id: Number(studentId) },
+      })
+      return res.status(200).json(oneEnrollment)
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
 }
 
 module.exports = PeopleController
