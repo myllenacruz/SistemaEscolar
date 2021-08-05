@@ -7,9 +7,12 @@ router.get('/people/:id', PeopleController.catchPerson)
 router.post('/people', PeopleController.createPerson)
 router.put('/people/:id', PeopleController.updatePerson)
 router.delete('/people/:id', PeopleController.deletePerson)
+
 router.get('/people/:studentId/enrollment/:enrollmentId', PeopleController.catchEnrollment)
 router.post('/people/:studentId/enrollment', PeopleController.createEnrollment)
 router.put('/people/:studentId/enrollment/:enrollmentId', PeopleController.updateEnrollment)
 router.delete('/people/:studentId/enrollment/:enrollmentId', PeopleController.deleteEnrollment)
+
+router.post('/people/:id/restore', PeopleController.restorePerson)
 
 module.exports = router
