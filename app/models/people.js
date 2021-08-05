@@ -18,6 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       email: DataTypes.STRING,
       role: DataTypes.STRING
     },
+    { paranoid: true },
     {
       sequelize,
       modelName: 'People',

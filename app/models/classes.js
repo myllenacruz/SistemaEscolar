@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+'use strict'
+const { Model } = require('sequelize')
 module.exports = (sequelize, DataTypes) => {
   class Classes extends Model {
     static associate(models) {
@@ -15,12 +13,16 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'level_id'
       })
     }
-  };
-  Classes.init({
-    startDate: DataTypes.DATEONLY
-  }, {
-    sequelize,
-    modelName: 'Classes',
-  });
-  return Classes;
-};
+  }
+  Classes.init(
+    {
+      startDate: DataTypes.DATEONLY,
+    },
+    { paranoid: true },
+    {
+      sequelize,
+      modelName: 'Classes',
+    }
+  )
+  return Classes
+}
