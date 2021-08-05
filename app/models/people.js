@@ -16,11 +16,11 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       active: DataTypes.BOOLEAN,
       email: DataTypes.STRING,
-      role: DataTypes.STRING
+      role: DataTypes.STRING,
     },
-    { paranoid: true },
     {
       sequelize,
+      paranoid: true,
       modelName: 'People',
     }
   )

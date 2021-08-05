@@ -13,7 +13,9 @@ module.exports = (sequelize, DataTypes) => {
   };
   Enrollments.init({
     status: DataTypes.STRING
-  }, { paranoid: true }, {
+  }, 
+  {
+    paranoid: true,
     sequelize,
     modelName: 'Enrollments',
   });
