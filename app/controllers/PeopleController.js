@@ -137,7 +137,8 @@ class PeopleController {
   static async catchEnrollments(req, res) {
     const { studentId } = req.params
     try {
-      const enrollments = await database.Enrollments.findAll({ where: { student_id: Number(studentId) } })
+      const person = await database.People.findOne({ where: { id: Number(studentId) } })
+      const enrollments = await person.getEnrolledClasses()
       return res.status(200).json(enrollments)
     } catch (error) {
       return res.status(500).json(error.message)

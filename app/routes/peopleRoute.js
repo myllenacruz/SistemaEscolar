@@ -13,6 +13,7 @@ router.get('/people/:studentId/enrollment/:enrollmentId', PeopleController.catch
 router.post('/people/:studentId/enrollment', PeopleController.createEnrollment)
 router.put('/people/:studentId/enrollment/:enrollmentId', PeopleController.updateEnrollment)
 router.delete('/people/:studentId/enrollment/:enrollmentId', PeopleController.deleteEnrollment)
+router.get('/people/:studentId/enrollment', PeopleController.catchEnrollments)
 
 router.post('/people/:id/restore', PeopleController.restorePerson)
 router.post('/people/:studentId/enrollment/:enrollmentId/restore', PeopleController.restoreEnrollment)
