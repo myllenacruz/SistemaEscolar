@@ -66,6 +66,16 @@ class PeopleController {
     }
   } 
 
+  static async restoreEnrollment(req, res) {
+    const { studentId, enrollmentId } = req.params 
+    try {
+      await database.Enrollments.restore( { where: { id: Number(id), student_id: Number(studentId) } })
+      return res.status(200).json({ message: 'Ok!' })
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  } 
+
   static async catchEnrollment(req, res) {
     const { studentId, enrollmentId } = req.params
     try {

@@ -44,12 +44,22 @@ class LevelController {
     } catch (error) {
       return res.status(500).json(error.message)
     }
-  }
+  } 
 
   static async deleteLevel(req, res) {
     const { id } = req.params
     try {
       await database.Levels.destroy({ where: { id: Number(id) } })
+      return res.status(200).json({ message: 'Ok!' })
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
+
+  static async restoreLevel(req, res) {
+    const { id } = req.params 
+    try {
+      await database.Levels.restore( { where: { id: Number(id) } })
       return res.status(200).json({ message: 'Ok!' })
     } catch (error) {
       return res.status(500).json(error.message)
