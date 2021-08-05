@@ -133,6 +133,16 @@ class PeopleController {
       return res.status(500).json(error.message)
     }
   }
+
+  static async catchEnrollments(req, res) {
+    const { studentId } = req.params
+    try {
+      const enrollments = await database.Enrollments.findAll({ where: { student_id: Number(studentId) } })
+      return res.status(200).json(enrollments)
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
 }
 
 module.exports = PeopleController
