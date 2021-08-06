@@ -1,9 +1,16 @@
 const database = require('../models')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 class ClassController {
   static async catchClasses(req, res) {
+    const { startDate, finalDate } = req.query
+    const where = {}
+    startDate || final_date ? where.startDate = {} : null
+    startDate ? where.startDate[Op.gte] = startDate : null 
+    finalDate ? where.startDate[Op.lte] = finalDate :  null 
     try {
-      const allClasses = await database.Classes.findAll()
+      const allClasses = await database.Classes.findAll({ where })
       return res.status(200).json(allClasses)
     } catch (error) {
       return res.status(500).json(error.message)
