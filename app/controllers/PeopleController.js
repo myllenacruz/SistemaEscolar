@@ -1,4 +1,5 @@
 const database = require('../models')
+const Sequelize = require('sequelize')
 
 class PeopleController {
   static async catchActivePeople(req, res) {
@@ -157,6 +158,23 @@ class PeopleController {
         order: [['student_id', 'ASC']]
       })
       return res.status(200).json(allEnrollments)
+    } catch (error) {
+      return res.status(500).json(error.message)
+    }
+  }
+
+  static async catchFullClasses(req, res) {
+    const classCapacity = 2
+    try {
+      const fullClasses = await database.Enrollments.findAndCountAll({
+        where: {
+          status: 'confirmed'
+        },
+        attributes: ['class_id'],
+        group: ['class_id'],
+        having: Sequelize.literal(`count(class_id) >= ${classCapacity}`)
+      })
+      return res.status(200).json(fullClasses.count)
     } catch (error) {
       return res.status(500).json(error.message)
     }
