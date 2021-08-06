@@ -1,10 +1,10 @@
-const database = require('../models')
-const Sequelize = require('sequelize')
+const { PeopleServices } = require('../services')
+const peopleServices = new PeopleServices()
 
 class PeopleController {
   static async catchActivePeople(req, res) {
     try {
-      const activePeople = await database.People.findAll()
+      const activePeople = await peopleServices.catchAllRegisters()
       return res.status(200).json(activePeople)
     } catch (error) {
       return res.status(500).json(error.message)
