@@ -4,7 +4,7 @@ const peopleServices = new PeopleServices()
 class PeopleController {
   static async catchActivePeople(req, res) {
     try {
-      const activePeople = await peopleServices.catchAllRegisters()
+      const activePeople = await peopleServices.catchActiveRegisters()
       return res.status(200).json(activePeople)
     } catch (error) {
       return res.status(500).json(error.message)
@@ -13,7 +13,7 @@ class PeopleController {
 
   static async catchPeople(req, res) {
     try {
-      const allPeople = await database.People.scope('all').findAll()
+      const allPeople = await peopleServices.catchAllRegisters()
       return res.status(200).json(allPeople)
     } catch (error) {
       return res.status(500).json(error.message)
